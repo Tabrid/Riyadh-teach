@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddReview = () => {
 
@@ -17,7 +19,7 @@ const [service , setService] = useState({name:'default',description:'default',pi
  })
  .then( res => res.json())
  .then(data => console.log(data))
-
+   toast("Successfully added");
  }
 
  const handleInputBlur = event => {
@@ -40,21 +42,24 @@ const [service , setService] = useState({name:'default',description:'default',pi
 
             <form onSubmit={handleAddService}>
 
-                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='name' placeholder='name'/>
+                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='name' placeholder='name' required/>
                 <br/>
-                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='description' placeholder='description'/>
+                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='description' placeholder='description' required/>
                 <br/>
-                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='picture' placeholder='picture'/>
+                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='picture' placeholder='picture' required/>
                 <br/>
-                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='rating' placeholder='rating'/>
+                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='rating' placeholder='rating' required/>
                 <br/>
-                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='price' placeholder='price'/>
+                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='price' placeholder='price' required/>
                 <br/>
 
-                <button className="mt-5 btn" type='submit'>Submit </button>
+                <div> <button className="mt-5 btn" type='submit'>Submit </button>
+                
+                <ToastContainer />
+                </div>
 
 
-
+                
             </form>
 
 

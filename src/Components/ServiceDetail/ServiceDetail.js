@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import Review from '../Review/Review';
 
 const ServiceDetail = () => {
 
     const {name,picture,description,price,rating} = useLoaderData();
 
-
-    const [review , setReview] = useState({rating:'default',details:'default',});
+    const [review , setReview] = useState({rating:'default',name:name,details:'default',img:picture,});
     const handleAddReview = event =>{
     event.preventDefault();
     
-    console.log(review);
+    console.log(picture);
     fetch('https://service-sigma.vercel.app/review', {
      method : 'POST',
      headers : {
@@ -22,7 +24,7 @@ const ServiceDetail = () => {
  .then( res => res.json())
  .then(data => console.log(data))
     
-   
+ toast("Successfully added");
     }
    
     const handleInputBlur = event => {
@@ -34,63 +36,53 @@ const ServiceDetail = () => {
     
    
     }
+  
    
-
-
-
-
-
-
-
 
     return (
         <>
         <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <img src={picture} alt='' className="max-w-sm rounded-lg shadow-2xl" />
+          <img src={picture} alt='' className="max-w-sm h-1/2 w-1/2 rounded-lg shadow-2xl" />
           <div>
-            <h1 className="text-5xl font-bold">{name}</h1>
-            <p className="py-6">{price}</p>
-            <p className="py-6">{rating}</p>
-            <p className="py-6">{description}</p>
+            <h1 className="text-5xl font-bold">Name :{name}</h1>
+            <p className="py-6">Price : {price}</p>
+            <p className="py-6">Rating :{rating}</p>
+            <p className="py-6">Details :{description}</p>
             
           </div>
 
         </div>
       </div>
-      <div>
+
+     <div>
+
+ <Review></Review>
+
+
+     </div>
+
+
+
+      <div className='flex justify-center'>
       <form onSubmit={handleAddReview}>
 
-                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='rating' placeholder='rating'/>
+                <input className="mt-10 w-60" onBlur={handleInputBlur} type='text' name='rating' placeholder='rating' required/>
                 <br/>
-                <input className="mt-5 " onBlur={handleInputBlur} type='text' name='details' placeholder='details'/>
+                
+                <input className="mt-10 w-60" onBlur={handleInputBlur} type='text' name='details' placeholder='details' required/>
                 <br/>
                 
 
-                <button className="mt-5 btn" type='submit'>Submit </button>
-
-
+                 <div>
+                 <button className="mt-10 btn" type='submit'>Submit </button>
+                 <ToastContainer />
+                 </div>
 
 </form>
 
 
-
-
-
-
-
-
-
-
-
       </div>
-
-
-
-
-
-
-
 
       </>
     );

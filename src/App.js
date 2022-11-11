@@ -9,6 +9,7 @@ import AddReview from './Components/AddReview/AddReview';
 import AllService from './Components/AllService/AllService';
 import ServiceDetail from './Components/ServiceDetail/ServiceDetail';
 import Blog from './Components/Blog/Blog';
+import PrivateRoute from './Route/PrivateRoute';
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
     },
     {
       path: '/review',
-      element : <Review></Review>
+      element : <PrivateRoute><Review></Review></PrivateRoute>
     },
     {
       path: '/allservice',
@@ -36,12 +37,12 @@ function App() {
     },
     {
       path: '/services/:id',
-      element : <ServiceDetail></ServiceDetail>,
+      element : <PrivateRoute><ServiceDetail></ServiceDetail></PrivateRoute>,
       loader : ({params}) => fetch(`https://service-sigma.vercel.app/services/${params.id}`)
     },
     {
       path: '/addreview',
-      element : <AddReview></AddReview>
+      element : <PrivateRoute><AddReview></AddReview></PrivateRoute>
     },
     {
       path: '/blog',

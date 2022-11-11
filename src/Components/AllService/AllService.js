@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AddReview from '../AddReview/AddReview';
+
 import ServiceCard from './ServiceCard';
 
 const AllService = () => {
@@ -31,11 +31,6 @@ const AllService = () => {
 
 
 }
-<h1> Add Service</h1>
- <div className='flex justify-center'>
-    
-    <AddReview></AddReview>
- </div>
 
 </div>
     );

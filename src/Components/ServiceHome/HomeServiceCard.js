@@ -5,47 +5,27 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const HomeServiceCard = ({Homeservice}) => {
 
-    const {_id,picture} = Homeservice;
-
-
-
-
-
-
-
-
+    const {_id,picture,name,description,rating,price} = Homeservice;
 
     return (
-        <div className="card lg:card-side bg-base-100 shadow-xl">
-            <figure> 
-
-                <PhotoProvider>
-                    <PhotoView src={picture} >
-
-
+        <div className="card w-96 bg-base-100 shadow-xl">
+        <figure className="px-10 pt-10">
+        <PhotoProvider>
+             <PhotoView src={picture} >
                         <img src={picture} alt='' />
-
-
-
-
                     </PhotoView>
-
-
-
-
                 </PhotoProvider>
-
-
-
-            </figure>
-  <div className="card-body">
-    <h2 className="card-title"> </h2>
-    <p>services :</p>
-    <div className="card-actions justify-end">
-      <Link to={`/services/${_id}`}><button className="btn btn-primary">Listen</button></Link>
-    </div>
-  </div>
+        </figure>
+        <div className="card-body items-center text-center">
+        <h2 className="card-title">Name:{name}</h2>
+          <p>Details:{description}</p>
+          <p>Details:{rating}</p>
+          <p>Details:${price}</p>
+          <div className="card-actions">
+          <Link to={`/services/${_id}`}><button className="btn btn-primary">details</button></Link>
+          </div>
         </div>
+      </div>
     );
 };
 

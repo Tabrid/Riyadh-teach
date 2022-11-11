@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AddReview from '../AddReview/AddReview';
+
 import Reviewcard from './Reviewcard';
 
 

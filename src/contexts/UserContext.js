@@ -10,7 +10,7 @@ const auth = getAuth(app)
 const UserContext = ({children}) => {
 
   const [ user ,setUser] = useState(null);
-
+   const [loading , setLoading] = useState(true);
   const createUser = (email,password) => {
   
 
@@ -19,6 +19,7 @@ const UserContext = ({children}) => {
 
    const signIn = (email,password) =>{
 
+    setLoading(true);
     
       return signInWithEmailAndPassword(auth, email, password)
    }
@@ -27,20 +28,21 @@ const UserContext = ({children}) => {
       return signOut(auth);
    }
    useEffect(()=> {
-    const unSubcribe = onAuthStateChanged(auth,currentUser => {
+    const unSubscribe = onAuthStateChanged(auth,currentUser => {
         console.log('current user inside', currentUser);
         setUser(currentUser);
+        setLoading(false);
        
     });
-    return () => unSubcribe();
+    return () => unSubscribe();
  } ,[])
    const LoginWithGoogle = () => {
-
+    setLoading(true);
       return signInWithPopup(auth, provider)
    }
 
 
- const authInfo = {user,createUser,signIn,logOut,LoginWithGoogle}
+ const authInfo = {user,loading,createUser,signIn,logOut,LoginWithGoogle}
 
   return (
     <AuthContext.Provider value={authInfo}>

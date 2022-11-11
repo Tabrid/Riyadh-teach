@@ -83,7 +83,7 @@ const handleLogin = (event) =>{
       </form>
       <p>Already have a account? <Link to='/login'>login</Link></p>
       <p className='text-error'>{error}</p>
-      <Button onClick={handleLogin}  variant="outline-primary"> <img className='g-logo' src='https://seeklogo.com/images/G/google-2015-logo-65BBD07B01-seeklogo.com.png' alt=''/> </Button>{' '}
+      <Button className='mt-5 ml-24 w-1/2' onClick={handleLogin}  variant="outline-primary"> <img className='g-logo' src='https://seeklogo.com/images/G/google-2015-logo-65BBD07B01-seeklogo.com.png' alt=''/> </Button>{' '}
     </div>
   )
 }
